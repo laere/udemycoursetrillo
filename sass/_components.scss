@@ -16,6 +16,12 @@
   @include flexAlignCenter;
   justify-content: center;
 
+  @media only screen and (max-width: $bp-smallest) {
+    order: 1;
+    flex: 0 0 100%;
+    background-color: var(--color-grey-light-2);
+  }
+
 
   &__input {
     font-family: inherit;
@@ -124,13 +130,25 @@
   font-size: 1.4rem;
   list-style: none;
   margin-top: 3.5rem;
-
+  @media only screen and (max-width: $bp-medium) {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
 
   &__item {
     position: relative;
 
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
+    }
+
      &:not(:last-child) {
        margin-bottom: .5rem;
+
+       @media only screen and (max-width: $bp-medium) {
+         margin: 0;
+       }
      }
   }
 
@@ -163,11 +181,20 @@
     color: var(--color-grey-light-1);
     text-decoration: none;
     text-transform: uppercase;
-    display: block;
     position: relative;
     padding: 1.5rem 3rem;
     z-index: 10;
     @include flexAlignCenter;
+
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-large) {
+      flex-direction: column;
+      padding: 1.5rem .5rem;
+    }
   }
 
   &__icon {
@@ -176,6 +203,13 @@
     margin-right: 2rem;
     // Color of parent element.
     fill: currentColor;
+
+    @media only screen and (max-width: $bp-large) {
+      margin-right: 0;
+      margin-bottom: .7rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
 }
@@ -189,6 +223,10 @@
   text-align: center;
   padding: 2.5rem;
   color: var(--color-grey-light-4);
+
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 
 
@@ -218,6 +256,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    @media only screen and (max-width: $bp-large) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
   }
 
   &__stars {
@@ -250,17 +293,29 @@
     @include flexAlignCenter;
     justify-content: center;
     flex-direction: column;
+
+    @media only screen and (max-width: $bp-large) {
+      padding: 0 1.5rem;
+    }
   }
 
   &__rating-average {
     font-size: 2.25rem;
     font-weight: 300;
     margin-bottom: -3px;
+
+    @media only screen and (max-width: $bp-large) {
+      font-size: 1.8rem;
+    }
   }
 
   &__rating-count {
     font-size: .8rem;
     text-transform: uppercase;
+
+    @media only screen and (max-width: $bp-large) {
+      font-size: .5rem;
+    }
   }
 }
 
@@ -281,7 +336,7 @@
   & span {
     margin-left: .3rem;
     transition: margin-left .2s;
-  
+
   }
 
 
@@ -378,7 +433,7 @@
   }
 
   &__friends {
-
+    display: flex;
   }
 
   &__photo {
@@ -389,7 +444,7 @@
     border: 2px solid #fff;
 
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 }
@@ -404,6 +459,11 @@
   margin-bottom: 3.5rem;
   position: relative;
   overflow: hidden;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
 
   &__text {
     margin-bottom: 2rem;
@@ -455,5 +515,75 @@
     color: var(--color-grey-light-2);
     font-family: sans-serif;
     z-index: 1;
+  }
+}
+
+//////////////////////////////////////
+// CALL TO ACTION
+
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+  }
+
+  &__book-now {
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+}
+
+//////////////////////////////////////
+// CALL TO ACTION
+
+.btn {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10rem;
+  background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  & > * {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    transition: all .2s;
+  }
+
+  &__visible {
+    padding: 2rem 7.5rem;
+  }
+
+  &__invisible {
+    position: absolute;
+    padding: 2rem 0;
+    left: 0;
+    top: -100%;
+
+  }
+
+  &:hover {
+    background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+  }
+
+  &:hover &__visible {
+    transform: translateY(100%);
+  }
+  &:hover &__invisible {
+    top: 0;
+  }
+
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite;
   }
 }
